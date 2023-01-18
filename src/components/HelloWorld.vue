@@ -64,8 +64,10 @@ export default {
       console.log("saveFormAndGetStatus");
       let retStatus;
       try{
+        console.log("saveFormAndGetStatus");
         const response = await this.axios.post( 
-          this.$root.store.beginning_url.concat(`form/${this.router_name_back}`),
+          this.$root.store.server_domain + "/form/insertFormRow",
+          // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
           {
             params:{
               userID: this.userID,
@@ -85,7 +87,6 @@ export default {
     },
 
     async submitForm() {
-      let status;
       console.log("submitForm");
       if (this.userID === '') {
         alert('User ID is required')
@@ -99,9 +100,31 @@ export default {
         alert('All three statuses are required to be filled')
         return
       }
-      alert('Form submitted!')
-      status = await this.saveFormAndGetStatus();
+      // alert('Form submitted!')
+
+      try{
+        const response = await this.axios.post( 
+          this.$root.store.server_domain + "/form/insertFormRow",
+          // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
+          {
+            params:{
+              userID: this.userID,
+              problemDescription: this.problemDescription,
+              deviceSerialNum: this.deviceSerialNum,
+              statusLight1: this.selectedStatusLight1,
+              statusLight2: this.selectedStatusLight2,
+              statusLight3: this.selectedStatusLight3,
+            }
+          }
+        );
+      const status = response.data;
+      console.log(status);
       alert(status);
+      }catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
+
     }
   }
 }
