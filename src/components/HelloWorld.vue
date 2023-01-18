@@ -3,16 +3,16 @@
       <h1>Form</h1>
       <form>
     <div class="form-group">
-      <label for="userId">User ID</label>
-      <input v-model="userId" type="number" min="0" class="form-control" id="userId" placeholder="Enter your User ID">
+      <label for="userID">User ID</label>
+      <input v-model="userID" type="number" min="0" class="form-control" id="userID" placeholder="Enter your User ID">
     </div>
     <div class="form-group">
       <label for="problemDescription">Problem description</label>
       <textarea  v-model="problemDescription" v-bind:maxlength="300"  type="text" class="form-control" id="problemDescription" placeholder="Enter your Problem description"></textarea>
     </div>
     <div class="form-group">
-      <label for="deviceSerialNumber">Device serial number</label>
-      <input v-model="deviceSerialNumber" v-bind:maxlength="64" type="text" class="form-control" id="deviceSerialNumber" placeholder="Enter your Device serial number (Example : 24-X-125447-DC)">
+      <label for="deviceSerialNum">Device serial number</label>
+      <input v-model="deviceSerialNum" v-bind:maxlength="64" type="text" class="form-control" id="deviceSerialNum" placeholder="Enter your Device serial number (Example : 24-X-125447-DC)">
     </div>
     <div class="form-group">
       <label for="statusIndicatorLight1">Status Indicator Light 1</label>
@@ -35,7 +35,7 @@
         <option v-for="option in options" :value="option.value" :key="option.value"> {{ option.text }} </option>
     </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" @click="submitForm">Submit</button>
       </form>
   </div>
 </template>
