@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <h1>Form</h1>
-      <form>
+      <form @submit.prevent="submitForm">
     <div class="form-group">
       <label for="userID">User ID</label>
       <input v-model="userID" type="number" min="0" class="form-control" id="userID" placeholder="Enter your User ID">
@@ -35,12 +35,13 @@
         <option v-for="option in options" :value="option.value" :key="option.value"> {{ option.text }} </option>
     </select>
     </div>
-    <button type="submit" class="btn btn-primary" @click="submitForm">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
       </form>
   </div>
 </template>
 
 <script>
+// import axios from 'axios';
 export default {
   name: 'myForm',
   data() {
@@ -60,33 +61,34 @@ export default {
   },
   methods: {
 
-    async saveFormAndGetStatus(){
-      console.log("saveFormAndGetStatus");
-      let retStatus;
-      try{
-        console.log("saveFormAndGetStatus");
-        const response = await this.axios.post( 
-          this.$root.store.server_domain + "/form/insertFormRow",
-          // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
-          {
-            params:{
-              userID: this.userID,
-              problemDescription: this.problemDescription,
-              deviceSerialNum: this.deviceSerialNum,
-              statusLight1: this.selectedStatusLight1,
-              statusLight2: this.selectedStatusLight2,
-              statusLight3: this.selectedStatusLight3,
-            }
-          }
-        );
-        retStatus = response.data;
-      }catch (error) {
-                console.log(error);
-      }
-      return retStatus;
-    },
+    // async saveFormAndGetStatus(){
+    //   console.log("saveFormAndGetStatus");
+    //   let retStatus;
+    //   try{
+    //     console.log("saveFormAndGetStatus");
+    //     const response = await this.axios.post( 
+    //       this.$root.store.server_domain + "/form/insertFormRow",
+    //       // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
+    //       {
+    //         params:{
+    //           userID: this.userID,
+    //           problemDescription: this.problemDescription,
+    //           deviceSerialNum: this.deviceSerialNum,
+    //           statusLight1: this.selectedStatusLight1,
+    //           statusLight2: this.selectedStatusLight2,
+    //           statusLight3: this.selectedStatusLight3,
+    //         }
+    //       }
+    //     );
+    //     retStatus = response.data;
+    //   }catch (error) {
+    //             console.log(error);
+    //   }
+    //   return retStatus;
+    // },
 
     async submitForm() {
+      let status;
       console.log("submitForm");
       if (this.userID === '') {
         alert('User ID is required')
@@ -100,14 +102,15 @@ export default {
         alert('All three statuses are required to be filled')
         return
       }
-      // alert('Form submitted!')
+      alert('Form submitted!')
 
       try{
-        const response = await this.axios.post( 
-          this.$root.store.server_domain + "/form/insertFormRow",
-          // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
-          {
-            params:{
+        console.log("in try",this);
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(
+          `${this.$root.store.server_domain}/form/insertFormRow`,
+        // const response = await this.axios.post('http://localhost:3000/form/insertFormRow',
+        {
               userID: this.userID,
               problemDescription: this.problemDescription,
               deviceSerialNum: this.deviceSerialNum,
@@ -115,15 +118,15 @@ export default {
               statusLight2: this.selectedStatusLight2,
               statusLight3: this.selectedStatusLight3,
             }
-          }
         );
-      const status = response.data;
+      console.log("after try");
+      status = response.data;
       console.log(status);
-      alert(status);
       }catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
+      alert(status);
 
     }
   }
