@@ -91,18 +91,18 @@ export default {
       let status;
       console.log("submitForm");
       if (this.userID === '') {
-        alert('User ID is required')
+        this.$alert('User ID is required')
         return
       }
       if (this.problemDescription === ''|| this.deviceSerialNum === '') {
-        alert('Problem description and Device serial number are required')
+        this.$alert('Problem description and Device serial number are required')
         return
       }
       if (this.selectedStatusLight1 === ''|| this.selectedStatusLight2 === '' || this.selectedStatusLight3 === '') {
-        alert('All three statuses are required to be filled')
+        this.$alert('All three statuses are required to be filled')
         return
       }
-      alert('Form submitted!')
+      // this.$alert('Form submitted!')
 
       try{
         console.log("in try",this);
@@ -126,7 +126,7 @@ export default {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
-      alert(status);
+      this.$alert(status,"The response:",'success');
 
     }
   }
@@ -162,6 +162,7 @@ button{
 }
 label{
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 h1{
   margin-top: 45px;
