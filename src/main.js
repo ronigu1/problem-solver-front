@@ -3,7 +3,6 @@ import App from './App.vue'
 import VueAxios from "vue-axios";
 import axios from "axios";
 import VueSimpleAlert from "vue-simple-alert";
-
 Vue.use(VueSimpleAlert);
 
 

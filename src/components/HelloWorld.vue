@@ -4,7 +4,7 @@
       <form @submit.prevent="submitForm">
     <div class="form-group">
       <label for="userID">User ID</label>
-      <input v-model="userID" type="number" min="0" class="form-control" id="userID" placeholder="Enter your User ID">
+      <input v-model="userID" type="number" min="0" class="form-control" id="userID" placeholder="Enter your User ID number">
     </div>
     <div class="form-group">
       <label for="problemDescription">Problem description</label>
@@ -61,45 +61,20 @@ export default {
   },
   methods: {
 
-    // async saveFormAndGetStatus(){
-    //   console.log("saveFormAndGetStatus");
-    //   let retStatus;
-    //   try{
-    //     console.log("saveFormAndGetStatus");
-    //     const response = await this.axios.post( 
-    //       this.$root.store.server_domain + "/form/insertFormRow",
-    //       // this.$root.store.server_domain.concat(`/form/${this.router_name_back}`),
-    //       {
-    //         params:{
-    //           userID: this.userID,
-    //           problemDescription: this.problemDescription,
-    //           deviceSerialNum: this.deviceSerialNum,
-    //           statusLight1: this.selectedStatusLight1,
-    //           statusLight2: this.selectedStatusLight2,
-    //           statusLight3: this.selectedStatusLight3,
-    //         }
-    //       }
-    //     );
-    //     retStatus = response.data;
-    //   }catch (error) {
-    //             console.log(error);
-    //   }
-    //   return retStatus;
-    // },
-
     async submitForm() {
+      //using Vue Simple Alert
       let status;
       console.log("submitForm");
       if (this.userID === '') {
-        this.$alert('User ID is required')
+        this.$alert('User ID is required','','warning')
         return
       }
       if (this.problemDescription === ''|| this.deviceSerialNum === '') {
-        this.$alert('Problem description and Device serial number are required')
+        this.$alert('Problem description and Device serial number are required','','warning')
         return
       }
       if (this.selectedStatusLight1 === ''|| this.selectedStatusLight2 === '' || this.selectedStatusLight3 === '') {
-        this.$alert('All three statuses are required to be filled')
+        this.$alert('All three statuses are required to be filled','','warning')
         return
       }
       // this.$alert('Form submitted!')
@@ -137,6 +112,7 @@ export default {
 <style>
 
 .container {
+  /* font-family: ‘Merriweather’, Georgia, serif; */
   margin: auto;
   max-width: 700px;
   height: 900px;
@@ -146,25 +122,33 @@ export default {
   border-width: 5px;
   border-color:rgb(36, 79, 119);
   background-color: #e6e6e6;
+  font-size: 19px;
 }
-
+input,textarea,select {
+  border-radius: 5px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;}
 form {
   margin: 40px;
-  margin-top: 200px;
 }
 .form-group{
-  margin-top: 20px;
-  margin-bottom: 20px;
-
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 button{
+  border-radius: 10px;
   margin-top: 10px;
+  size: 50px;
+  background-color: rgb(143, 167, 190);
+  border: 2px solid rgb(36, 79, 119);
+  width: 94%;
 }
-label{
-  margin-bottom: 10px;
-  margin-top: 20px;
-}
+
 h1{
   margin-top: 45px;
 }
+
 </style>
