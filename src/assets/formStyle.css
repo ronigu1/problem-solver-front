@@ -1,0 +1,44 @@
+
+.container {
+  /* font-family: ‘Merriweather’, Georgia, serif; */
+  margin: auto;
+  max-width: 700px;
+  height: 900px;
+  align-items: right;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 5px;
+  border-color:rgb(36, 79, 119);
+  background-color: #e6e6e6;
+  font-size: 19px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+input,textarea,select {
+  border-radius: 5px;
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;}
+form {
+  margin: 35px;
+}
+.form-group{
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+button{
+  border-radius: 5px;
+  margin: 15px;
+  padding: 2% 2%;
+  size: 50px;
+  background-color: rgb(143, 167, 190);
+  border: 2px solid rgb(36, 79, 119);
+  width: 20%;
+}
+
+h1{
+  margin-top: 45px;
+}
+

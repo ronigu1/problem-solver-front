@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueAxios from "vue-axios";
 import axios from "axios";
 import VueSimpleAlert from "vue-simple-alert";
+import text from './assets/consoleText';
 Vue.use(VueSimpleAlert);
 
 
@@ -22,14 +23,14 @@ Vue.use(VueAxios, axios);
 const shared_data={
   server_domain: "http://localhost:3000"
 };
-console.log("shared_data:",shared_data);
-
-
+// creating a new Vue instance and mounting it to a DOM element with the id "app." 
+console.log(text);
 new Vue({
+  el: '#app',
   data() {
     return {
       store: shared_data
     };
   },
   render: h => h(App),
-}).$mount('#app')
+})

@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <formPage />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import formPage from './components/FormPage.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    formPage
   }
 }
+
 </script>
 
 <style>

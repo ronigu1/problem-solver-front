@@ -7,11 +7,11 @@
       <input v-model="userID" type="number" min="0" class="form-control" id="userID" placeholder="Enter your User ID number">
     </div>
     <div class="form-group">
-      <label for="problemDescription">Problem description</label>
+      <label for="problemDescription">Problem Description</label>
       <textarea  v-model="problemDescription" v-bind:maxlength="300"  type="text" class="form-control" id="problemDescription" placeholder="Enter your Problem description"></textarea>
     </div>
     <div class="form-group">
-      <label for="deviceSerialNum">Device serial number</label>
+      <label for="deviceSerialNum">Device Serial Number</label>
       <input v-model="deviceSerialNum" v-bind:maxlength="64" type="text" class="form-control" id="deviceSerialNum" placeholder="Enter your Device serial number (Example : 24-X-125447-DC)">
     </div>
     <div class="form-group">
@@ -43,7 +43,7 @@
 <script>
 // import axios from 'axios';
 export default {
-  name: 'myForm',
+  name: 'formPage',
   data() {
     return {
       router_name_back:"insertFormRow",
@@ -64,7 +64,6 @@ export default {
     async submitForm() {
       //using Vue Simple Alert
       let status;
-      console.log("submitForm");
       if (this.userID === '') {
         this.$alert('User ID is required','','warning')
         return
@@ -80,7 +79,6 @@ export default {
       // this.$alert('Form submitted!')
 
       try{
-        console.log("in try",this);
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.post(
           `${this.$root.store.server_domain}/form/insertFormRow`,
@@ -94,11 +92,8 @@ export default {
               statusLight3: this.selectedStatusLight3,
             }
         );
-      console.log("after try");
       status = response.data;
-      console.log(status);
       }catch (err) {
-        console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
       this.$alert(status,"The response:",'success');
@@ -108,47 +103,4 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
-.container {
-  /* font-family: ‘Merriweather’, Georgia, serif; */
-  margin: auto;
-  max-width: 700px;
-  height: 900px;
-  align-items: right;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(36, 79, 119);
-  background-color: #e6e6e6;
-  font-size: 19px;
-}
-input,textarea,select {
-  border-radius: 5px;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;}
-form {
-  margin: 40px;
-}
-.form-group{
-  padding: 10px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-button{
-  border-radius: 10px;
-  margin-top: 10px;
-  size: 50px;
-  background-color: rgb(143, 167, 190);
-  border: 2px solid rgb(36, 79, 119);
-  width: 94%;
-}
-
-h1{
-  margin-top: 45px;
-}
-
-</style>
+<style scoped>@import './../assets/formStyle.css';</style>
