@@ -32,5 +32,5 @@ new Vue({
       store: shared_data
     };
   },
-  render: h => h(App),
+  render: h => h(App)
 })
