@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <div id="navID">
-      <ul>
-        <!-- <formPage /> -->
-        <li><router-link :to="{name: 'main' }"> Home Page </router-link></li>
-        <li><router-link :to="{name: 'form' }"> Search Problem </router-link></li>
-      </ul>
-      
+      <nav>
+        <router-link class="router" :to="{name: 'main' }"> Home Page </router-link>
+        <router-link class="router" :to="{name: 'form' }"> Search Problem </router-link>
+      </nav>
       <router-view />
     </div>
   </div>
@@ -33,30 +31,27 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-ul {
+nav {
   list-style-type: none;
   margin: 0; 
   padding: 5px;
   overflow: hidden;
-  background-color:rgb(169, 202, 233);
+  background-color:rgb(155, 194, 229);
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
   margin-bottom: 15px;
 }
 
-li{
+nav .router {
   display: inline;
-}
-
-li a {
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-li a:hover {
+nav .router:hover {
   background-color:rgb(15, 20, 85);
 }
 /* nav {
