@@ -35,6 +35,13 @@
         <option v-for="option in options" :value="option.value" :key="option.value"> {{ option.text }} </option>
     </select>
     </div>
+    <div class="form-group">
+      <label for="statusIndicatorLight4">Status Indicator Light 4</label>
+      <select v-model="selectedStatusLight4" class="form-control" id="statusIndicatorLight4" placeholder="Select Status">
+        <option value="" disabled>Please tap here to select an option</option>
+        <option v-for="option in options" :value="option.value" :key="option.value"> {{ option.text }} </option>
+    </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
       </form>
   </div>
@@ -53,6 +60,7 @@ export default {
       selectedStatusLight1: '',
       selectedStatusLight2: '',
       selectedStatusLight3: '',
+      selectedStatusLight4: '',
       options: [
         { value: 'off', text: 'off' },
         { value: 'on', text: 'on' },
@@ -72,7 +80,7 @@ export default {
         this.$alert('Problem description and Device serial number are required','','warning')
         return
       }
-      if (this.selectedStatusLight1 === ''|| this.selectedStatusLight2 === '' || this.selectedStatusLight3 === '') {
+      if (this.selectedStatusLight1 === ''|| this.selectedStatusLight2 === '' || this.selectedStatusLight3 === '' || this.selectedStatusLight4 === '') {
         this.$alert('All three statuses are required to be filled','','warning')
         return
       }
@@ -90,6 +98,7 @@ export default {
               statusLight1: this.selectedStatusLight1,
               statusLight2: this.selectedStatusLight2,
               statusLight3: this.selectedStatusLight3,
+              statusLight4: this.selectedStatusLight4,
             }
         );
       status = response.data;
