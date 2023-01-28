@@ -5,6 +5,7 @@ import axios from "axios";
 import VueSimpleAlert from "vue-simple-alert";
 import text from './assets/consoleText';
 Vue.use(VueSimpleAlert);
+import router from './router.js'
 
 
 Vue.config.productionTip = false
@@ -27,6 +28,7 @@ const shared_data={
 console.log(text);
 new Vue({
   el: '#app',
+  router,
   data() {
     return {
       store: shared_data
