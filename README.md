@@ -6,7 +6,7 @@ returns a response accordingly (response status).
 
 Server side:
 
-A logic service will calculate the "response status" message according to the logic:
+# A logic service will calculate the "response status" message according to the logic:
 
   ○ If serial number starts with 24-X -> “please upgrade your device”
   
